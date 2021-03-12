@@ -3,28 +3,46 @@
 
 
 \begin{zhaiyao}
-
-这里输入中文摘要。
+    对于社交网络中用户对商品和服务的评论进行情感分析可以有效地帮助企业或公司量化分析客户给予的反馈并做出改进。 为了减轻目标域上所需要的大量标注数据，领域自适应通过学习一个在源域上的可迁移模型提供了一个有效替代方案。目前已有的多源域适应(MDA)方法大多基于抽取域无关信息以最小化源域分布与目标域分布之间的距离， 因而无法保留目标域上特有的与情感相关的域特征，忽视了不同源域甚至同一源域的子域之间的相互关系， 并且无法依据模型状态准确地量化不同训练阶段每个样本的权重变化。在这篇论文中，我提出了一个新的实例级多源域适应框架，命名为课程式循环一致性对抗神经网络(C-CycleGAN)。具体地，C-CycleGAN包含三个部分：(1) 预训练的文本编码器，用来将不同领域的文本编码到一个连续的表征空间，(2) 课程式实例级领域自适应的中间域生成器，用来最小化源域与目标域间的域间隙，(3) 在中间域上训练的目标任务分类器，用来做最终的情感分类。C-CycleGAN将源域中的实例级样本迁移到一个距离目标域更近的中间域上，同时保留尽可能多的情感语义信息并丢失尽可能少的域特征。进一步地，模型中的动态实例级权重机制能够实时地在每个训练阶段给不同的源域样本分配最优权重。我在三个基准数据集上做了大量实验并相较于最前沿方案取得了大幅提升。
 \end{zhaiyao}
 
 
 
 
 \begin{guanjianci}
-毕业论文；模板
+    迁移学习，领域自适应，循环生成对抗网络， 课程式学习，多源域，情感分析，自然语言处理
 \end{guanjianci}
 
 
 
 \begin{abstract}
-
-
-This is the abstract.
-
+    Sentiment analysis of user-generated reviews or comments on products and services in social networks can help enterprises to analyze
+    the feedback from customers and take corresponding actions for
+    improvement. To mitigate large-scale annotations on the target
+    domain, domain adaptation (DA) provides an alternate solution
+    by learning a transferable model from other labeled source domains. Existing multi-source domain adaptation (MDA) methods
+    either fail to extract some discriminative features in the target
+    domain that are related to sentiment, neglect the correlations of
+    different sources and the distribution difference among different
+    sub-domains even in the same source, or cannot reflect the varying
+    optimal weighting during different training stages. In this paper, we
+    propose a novel instance-level MDA framework, named curriculum
+    cycle-consistent generative adversarial network (C-CycleGAN), to
+    address the above issues. Specifically, C-CycleGAN consists of three
+    components: (1) pre-trained text encoder which encodes textual input from different domains into a continuous representation space,
+    (2) intermediate domain generator with curriculum instance-level
+    adaptation which bridges the gap across source and target domains,
+    and (3) task classifier trained on the intermediate domain for final sentiment classification. C-CycleGAN transfers source samples
+    at instance-level to an intermediate domain that is closer to the
+    target domain with sentiment semantics preserved and without
+    losing discriminative features. Further, our dynamic instance-level
+    weighting mechanisms can assign the optimal weights to different 
+    source samples in each training stage. We conduct extensive experiments on three benchmark datasets and achieve substantial gains
+    over state-of-the-art DA approaches.
 \end{abstract}
 
 
 
 \begin{keywords}
-Thesis; template
+    Domain adaptation, multiple sources, sentiment analysis, cycle-consistent generative adversarial network, curriculum learning
 \end{keywords} 
