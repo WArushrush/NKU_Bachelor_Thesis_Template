@@ -2,272 +2,46 @@
 % -*- coding: utf-8 -*-
 
 
-\chapter{NKThesis 相关说明} 
+\chapter{相关工作} 
 \label{chpt:relatedwork}
 
-\section{系统要求}
-
-模板仅在 TeXLive 2016，TeXLive 2018 下测试通过。对于其它 TeX 发行版可能需要做个别修改。
-
-\section{NKThesis 使用说明}
-
-本模板可以使用以下方式编译:
-\begin{enumerate}
- \item \XeLaTeX [推荐]
-\end{enumerate}
-
-例如，
-\begin{verbatim}
-         xelatex main
-         biber main      % 处理参考文献
-         xelatex main   % 连续编译两遍以生成正确的文献引用。
-\end{verbatim}
-
-
-
-
-
-本模板用到 宋体、楷体、仿宋、黑体四种字体. 若需重新配置字体, 请修改 NKTfonts.cfg.
-对于 Linux/Mac 下的 TeX Live 2009, 可能需要设置环境变量 OSFONTDIR, 具体内容请参考 texmf.cnf.
-
-
-我们建议您使用\XeLaTeX\ 编译。与前两种方法相比，\XeLaTeX\  编译长文档的速度更快，
-编译一篇一百多页的论文只需几秒的时间(SL9400 @ 1.86GHz)。
-
-在改变编译方式前应先删除 *.toc 和 *.aux 文件，
-因为不同编译方式产生的辅助文件格式可能并不相同。
-
-
-
-注意：使用 \XeLaTeX\ 编译时，\XeTeX\ 的版本应不低于 0.9995.0(MiKTeX 2.8 或者 TeXLive 2009)。
-
-
-\section{引用章节号}
-\label{sec:ex:A}
-
-引用章节号请参考如下格式: \ref{chpt:relatedwork}\ref{sec:ex:A}.
-
-
-\section{中英文间隔}
-
-使用 \XeLaTeX\ 编译时，会自动在中英文转换时添加必要的空格。 使用 [PDF]\LaTeX\
-编译时仅忽略中文之间的空格，而中英文之间的空格予以保留。
-因此，不管何种编译方式，您都不需要在中英文间添加 $\tilde{}$ 以获得额外的空格。例如，
-
-这是 English 中文 $x=y$ 测试
-
-这是English中文$x=y$测试
-
-可以看出，以上两行用 \XeLaTeX\ 编译的结果是相同的。
-
-
-\section{NKThesis 预调用的宏包}
-
-NKThesis 已经调用以下宏包，您无须重新调用。
-
-\begin{center}
-\tablecaption{NKThesis 预调用的宏包}
-\begin{tabular}{l|l}
-\hline
-编译方式 & 调用的宏包\\ \hline
-\XeLaTeX & xeCJK, CJKnumb, graphicx, mathptmx, amssymb,mathpazo,pgf,tikz \\ \hline
-\end{tabular}
-\end{center}
-
-
-\section{图表}
-\label{sec:relatedwork:table}
-
-插图的例子：
-
-\begin{figure}
-  \centering
-  \includegraphics[viewport=0 0 2984 969,width=40mm]{nankaidaxue.pdf}  
-  \caption{\label{fig:nku}南开大学}
-\end{figure}
-
-\section{字体}
-
-一般情况下, 您不需要显式地设置字体. 如果确实需要, 请使用以下命令
-
-\songti{宋体}
-\heiti{黑体}
-\kaiti{楷体}
-\fangsong{仿宋}
-{\bfseries\songti 加粗宋体}
-{\bfseries\heiti 加粗黑体}
-{\bfseries\kaiti 加粗楷体}
-{\bfseries\fangsong 加粗仿宋}
-
-\begin{verbatim}
-宋体:  \rmfamily\upshape 或 \songti
-黑体:  \bfseries 或 \heiti
-楷体:  \itshape  或 \kaiti
-仿宋:  \ttfamily 或 \fangsong
-加粗:  \jiacu
-\end{verbatim}
-
-
-\section{参考文献} \label{sec:relatedwork:ref}
-参考文献引用:
-
-\subsection{录入参考文献}
-
-本模板采用 biblatex 宏包管理参考文献。如果你对此不熟悉，可以
-\begin{enumerate}
-\item 参考宏包使用说明，或者
-\item 手工排版参考文献，然后参考 nkthesis.bib 最后 3 条的格式录入。
-\end{enumerate}
-
-
-
-\section{一些建议}
-\subsection{关于分数的写法}
-\label{sec:relatedwork:equation}
-
-
-\LaTeX 提供宏命令\verb+\frac+, 用以打印分数. 为使得版面整齐, 该命令的使用应遵循以下原则:
-
-\begin{enumerate}
-\item 仅在分行表达式中使用,
-\item 不嵌套使用,
-\item 不在上下标中使用.
-\end{enumerate}
-
-也就是说, 行内表达式和上下标中出现分数时一律用 $a/b$表示, 如
-$(x+2)/((3x^2+4)(7+y))$. 下面是居中表达式:
-
-\[
- x^2 = y^{1/2} +3.
-\]
-
-多行表达式: 尽量在加、减、乘、等号前换行. 在乘号前换行时,
-下一行首用 \string\times:
-\def\iint{\mathop{\int\!\!\!\int}}\def\calG{\mathcal G}
-\begin{eqnarray}
-&&\left|(W_{\psi_1}f)(a,b)-(W_{\psi_1}f)(a_j,b_{j,k})\right|^{2}\nonumber\\
-&=&\frac{1}{C^{2}_{\varphi}}\Bigg|\iint_{\calG} (W_{\varphi}f)(s,t) \nonumber\\
-&&\qquad\times \Bigg( (W_{\psi_1}\varphi)\left(\frac{a}{s},
-\frac{b-t}{s}\right)
-     -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\Bigg)
-  \frac{dsdt}{s^{d+1}}\Bigg|^2 \nonumber\\
-&\le& \frac{1}{C^2_{\varphi}} \iint_{\calG} |(W_{\varphi}f)(s,t)|^2 \nonumber\\
-&&\qquad \times\left| (W_{\psi_1}\varphi)\left(\frac{a}{s},
-\frac{b-t}{s}\right)
-    -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\right|
-   \frac{dsdt}{s^{d+1}}  \nonumber\\
-&&\qquad \times   \iint_{\calG}\!
- \left|(W_{\psi_1}\varphi)\left(\frac{a}{s}, \frac{b-t}{s}\right)
-    -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\right|
- \frac{ ds dt}{s^{d+1}} \nonumber\\
-&=& \frac{1}{C^2_{\varphi}} ....  \label{eq:a0}
-\end{eqnarray}
-
-
-\subsection{标点}
-科技文献中一般用半角标点, 请参考《中国科学》发表的论文.
-
-如果使用全角标点, 可以使用
-\begin{verbatim}
-  \punctstyle{<style>}
-\end{verbatim}
-选择标点样式, 有效值为
-\begin{verbatim}
-  quanjiao (所有标点符号占一个汉字宽度，
-            相邻两个标点占一个半汉字宽度)
-  banjiao  (所有标点符号占半个汉字宽度)
-  hangmobanjiao (所有标点符号占一个汉字宽度，行末行首半角)
-  kaiming  (句号、叹号、问号占一个汉字宽度，其他标点占半个汉字宽度)
-\end{verbatim}
-缺省为全角式。注意：不论选择哪种样式，都提供行末对齐(margin kerning)功能。
-
-
-
-\begin{Theorem} \label{thm:latex}
-\LaTeX 的输出是最完美的.
-\end{Theorem}
-
-先证明一个引理
-\begin{Lemma} \label{thm:tex}
-\TeX 文件在不同操作系统下的排版结果完全一致.
-\end{Lemma}
-
-\begin{proof}
-这是证明.
-\end{proof}
-
-
-\begin{proof}[定理~\ref{thm:latex}的证明]
-显然是错的.
-\end{proof}
-
-单个带编号的表达式
-\begin{equation}\label{eq:a1}
-x=y+z
-\end{equation}
-
-单个不带编号的表达式
-\[
-y=x-z.
-\]
-
-不带编号的多行表达式
-\begin{eqnarray*}
-x&=&y+z \\
- &=&z-s\\
- &<& 3. \\
- && \mbox{一些注释}
-\end{eqnarray*}
-
-带编号的多行表达式
-\begin{eqnarray}
- x&=& y-z, \label{eq:aa1}\\
- y&=& x+z, \nonumber \\
- z&=&y-x. \label{eq:aa2}
-\end{eqnarray}
-
-
-
-引用:   定理\ref{thm:latex}的推论是什么呢？
-方程式编号:  由(\ref{eq:a1})(\ref{eq:aa2})式.
-
-\subsection{列举环境:  enumerate}
-
-环境 enumerate 已经被改写，增加了一个可选参数[字符串], 用以控制所进。例如，
-\begin{verbatim}
-  \begin{enumerate}
-    \item This is an example.
-    \item This is an example.
-      \begin{enumerate}
-      \item This is an example.
-      \item This is an example.
-    \end{enumerate}
-  \end{enumerate}
-  \begin{enumerate}[Mn]% 字符串"Mn"的宽度为增加的缩进。
-                       % 缺省值为 [M]
-    \item This is an example.
-    \item This is an example.
-      \begin{enumerate}[Mnn]% 字符串"Mnn"的宽度为增加的缩进。
-      \item This is an example.
-      \item This is an example.
-    \end{enumerate}
-  \end{enumerate}
-\end{verbatim}
-的输出为
-  \begin{enumerate}
-    \item This is an example.
-    \item This is an example.
-      \begin{enumerate}
-      \item This is an example.
-      \item This is an example.
-    \end{enumerate}
-  \end{enumerate}
-  \begin{enumerate}[Mn]% 字符串"Mn"的宽度为增加的所进。
-                       % 缺省值为 [M]
-    \item This is an example.
-    \item This is an example.
-      \begin{enumerate}[Mnn]% 字符串"Mnn"的宽度为增加的所进。
-      \item This is an example.
-      \item This is an example.
-    \end{enumerate}
-  \end{enumerate}
+\textbf{文本情感分类} 文本情感分类或意见挖掘旨在从文本方面评估人们对于商品,
+服务或组织的观点,情感和态度\cite{zhang2018deep}. 诸如商品评论,论坛讨论和微信等广泛流
+行的社交网络促成了这一任务的迅速发展\cite{zhang2018deep,chen2019emoji}. 传统的情感分析方法主
+要专注于设计人工特征\cite{pang2008opinion,mohammad2013nrc},将其送入标准的分类器,例如SVM. 近年
+情感分析的工作主要基于深度神经网络\cite{zhang2018deep,wang2018sentiment},其已经胜任了许多自然语
+言处理任务. 一些广泛应用于情感分析的深度模型包括递归自编码器\cite{socher2011semi,dong2014adaptive,qian2015learning},
+递归神经张量网络\cite{socher2013recursive},循环神经网络(RNN)\cite{cho2014learning},长短期记忆神经网络(LSTM)\cite{hochreiter1997long},
+树状LSTM\cite{tai2015improved},RNN编码解码结构\cite{cho2014learning}和BERT\cite{devlin2019bert}. 上述监督学习方法通常需要大
+规模的标注数据进行训练. 然而高质量的情感标签通常需要消耗大量的时间和人力
+资源才能得到. 在C-CycleGAN中,我应用了双向LSTM(Bi-LSTM)\cite{hochreiter1997long}作为编码器
+和一个多层感知机作为最终情感分类任务的分类器. \\
+\textbf{单源无监督域适应} 近年单源无监督域适应(SUDA)方法大多主要采用包含两条尾部相
+连的数据流的深度神经网络\cite{zhuo2017deep,zhao2018adversarial}. 一条数据流在带标记数据的源域上用传统的
+目标任务损失函数进行训练,例如分类任务的交叉熵损失(cross entropy loss). 
+另一条数据流旨在通过不同的对齐损失函数(alignment loss)将源域与目标域进行
+对齐以解决域间隙问题,例如分布差异损失(discrepancy loss),对抗损失(adversarial loss)
+和自监督损失(self-supervised loss)\emph{etc}. 基于分布差异的方法采用一些距离度
+量来最小化源域和目标域在特定空间的差异,例如最大期望差异\cite{long2015learning,wang2018multi,xi2020domain},相
+关性对齐\cite{sun2016return,sun2017correlation,zhuo2017deep}和对比领域差异\cite{kang2019contrastive}. 对比判别模型
+(adversarial discriminative model)通常采用一个域判别器以对抗地对齐从
+源域和目标域中抽取的特征来使他们无法判别\cite{ganin2016domain,tzeng2017adversarial,chen2017no,shen2017wasserstein,tsai2018learning,huang2018domain,kumar2019adversarial,wu2020unsupervised}. 
+除了域判别器,对抗生成模型(adversarial generative model)还包含一个生成部分
+,基于生成对抗网络(GAN)\cite{goodfellow2014generative}和它的变体,例如CoGAN\cite{liu2016coupled}, SimGAN\cite{shrivastava2017learning}和
+CycleGAN\cite{zhu2017unpaired,zhao2019cycleemotiongan,hoffman2018cycada}以生成假源域或目标域样本. 基于自监督的模型在原始的目
+标任务网络中融入了辅助的自监督学习任务以使源域和目标域靠近. 通常使用的自监
+督任务包括重构(reconstruction)\cite{ghifary2015domain,ghifary2016deep,chen2020fido},图像旋转预测(image rotation prediction)\cite{sun2019unsupervised,xu2019self}
+,拼图预测(jigsaw prediction)\cite{carlucci2019domain},和掩码(masking)\cite{vu2020effective}. 尽管这些方法在
+SUDA任务中达到了满意的效果,他们的表现在应用于多源域适应任务时会大幅衰减. \\
+\textbf{多源域适应} 基于一些理论分析\cite{ben2010theory,hoffman2018algorithms},多源域适应旨在更好地解决训练数据属于
+多个源域的问题\cite{sun2015survey,zhao2019multi}. 早期的多源域适应方法主要分为两种\cite{sun2015survey,sun2011two,duan2012exploiting,chattopadhyay2012multisource,duan2012domain}以及预训练分类器的组合\cite{xu2012multi,sun2013bayesian}. 近年的方法考虑了一些特殊的
+多源域适应场景,例如不完全多源域适应\cite{ding2018incomplete}和目标域偏移\cite{redko2019optimal}. 
+最近一些基于深度表示学习的多源域适应方法被提出,例如多源对抗网络(MDAN)\cite{zhao2018adversarial},
+深度混合网络(DCTN)\cite{xu2018deep},混合专家模型(MoE)\cite{guo2018multi},时矩匹配网络(MMN)\cite{peng2019moment},
+多源对抗聚合网络(MADAN)\cite{zhao2019multi},多源蒸馏模型(MDDA)\cite{zhao2020distilling}和课程式源域选择模型(CMSS)\cite{yang2020curriculum}. 
+MDAN,DCTN,MoE,MMN,MADAN和MDDA都需要源域样本的域标签. MDDA和CMSS利用
+了静态权重机制选择距离目标域较近的源域样本,而其他模型并没有考虑不同源域样
+本的重要性. 用于情感分类的的多源域适应方法,\textit{e.g.}MDAN和MoE仅仅集中于抽取域无
+关特征,这将导致目标域中与情感相关的域特征被丢失. 区别于这些方法,对于源域
+样本,我利用循环一致性和情感一致性生成了一个距离目标域较近的中间域. 更进一
+步地,我提出实例级动态权重机制,在不需要域标签的情况下对源域样本分配权重. 
